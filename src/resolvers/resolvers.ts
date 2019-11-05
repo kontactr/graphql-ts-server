@@ -1,5 +1,6 @@
 import "../types/schema";
 import { ResolverMap } from "../types/graphqlTypesUtils";
+
 import * as bcrypt from "bcrypt";
 import { Users } from "../entity/Users";
 
@@ -8,13 +9,16 @@ const resolvers: ResolverMap = {
     hello: (_: any, { name }: GQL.IHelloOnQueryArguments) => `hello ${name}`
   },
   Mutation: {
+
     register: async (
       _: any,
       { email, password }: GQL.IRegisterOnMutationArguments
     ) => {
+
       const passwordSalt = parseInt(process.env.PASSWORD_SALT || "0", 10) || 2;
-      console.log(passwordSalt);
+
       const hashedPassword = await bcrypt.hash(password, passwordSalt);
+
       const user = Users.create({
         email,
         password: hashedPassword

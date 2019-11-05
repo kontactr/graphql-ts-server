@@ -17,6 +17,7 @@
     "pg": "^7.12.1",
     "prettier": "1.18.2",
     "reflect-metadata": "^0.1.10",
+
     "ts-jest": "24.1.0",
     "typeorm": "0.2.20",
     "uuid": "3.3.3"
@@ -26,6 +27,7 @@
     "typescript": "3.3.3333"
   },
   "scripts": {
+
     "test": "jest",
     "start": "NODE_ENV=4000  nodemon --exec ts-node src/index.ts",
     "gen-schema": "gql2ts src/schema/schema.graphql -o src/types/schema.ts",

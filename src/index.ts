@@ -5,6 +5,7 @@ import { importSchema } from "graphql-import";
 import * as path from "path";
 import resolvers from "./resolvers/resolvers";
 
+
 const connectionObject =
   process.env.NODE_ENV === "4000"
     ? require("../ormconfig.json")
@@ -16,7 +17,6 @@ export async function startServer() {
   const typeDefs = importSchema(path.join(__dirname, "schema/schema.graphql"));
 
   const server = new GraphQLServer({ typeDefs, resolvers });
-  console.log(process.env.NODE_ENV, 14);
   await server.start({
     port: process.env.NODE_ENV
   });
@@ -24,3 +24,4 @@ export async function startServer() {
 }
 
 startServer();
+
