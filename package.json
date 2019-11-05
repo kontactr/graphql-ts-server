@@ -1,21 +1,44 @@
 {
   "dependencies": {
+    "@types/bcrypt": "3.0.0",
     "@types/graphql": "14.5.0",
+    "@types/jest": "24.0.21",
     "@types/node": "12.12.5",
+    "@types/uuid": "3.4.6",
+    "bcrypt": "3.0.6",
+    "gql2ts": "1.10.1",
     "graphql": "^14.5.8",
+    "graphql-import": "0.7.1",
+    "graphql-request": "1.8.2",
     "graphql-yoga": "^1.18.3",
+    "jest": "24.9.0",
     "mysql": "^2.14.1",
     "nodemon": "^1.19.4",
     "pg": "^7.12.1",
+    "prettier": "1.18.2",
     "reflect-metadata": "^0.1.10",
-    "typeorm": "0.2.20"
+    "ts-jest": "24.1.0",
+    "typeorm": "0.2.20",
+    "uuid": "3.3.3"
   },
   "devDependencies": {
     "ts-node": "3.3.0",
-    "@types/node": "^8.0.29",
     "typescript": "3.3.3333"
   },
   "scripts": {
-    "start": "nodemon src/index.ts"
+    "test": "jest",
+    "start": "NODE_ENV=4000  nodemon --exec ts-node src/index.ts",
+    "gen-schema": "gql2ts src/schema/schema.graphql -o src/types/schema.ts",
+    "test-server": "NODE_ENV=4001 NODE_TESTING_URL=https://i1258-4001.sse.codesandbox.io/ ts-node src/index.ts"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
+  },
+  "remember": {
+    "0": "here global setup is there, but temporary removed it."
   }
 }
