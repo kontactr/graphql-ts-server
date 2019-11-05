@@ -6,7 +6,9 @@ import * as path from "path";
 import resolvers from "./resolvers/resolvers";
 
 createConnection()
-  .then(async connection => {
+
+  .then(async () => {
+  .then(async () => {
     console.log("Inserting a new user into the database...");
 
     console.log("Here you can setup and run express/koa/any other framework.");
@@ -19,7 +21,5 @@ createConnection()
     server.start(() => {
       console.log("Server is running...");
     });
-
-    connection.close();
   })
   .catch(error => console.log(error));
