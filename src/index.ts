@@ -5,9 +5,8 @@ import { importSchema } from "graphql-import";
 import * as path from "path";
 import resolvers from "./resolvers/resolvers";
 
-
 const connectionObject =
-  process.env.NODE_ENV === "4000"
+  process.env.NODE_ENV_PORT === "4000"
     ? require("../ormconfig.json")
     : require("../ormconfigtest.json");
 
@@ -18,10 +17,9 @@ export async function startServer() {
 
   const server = new GraphQLServer({ typeDefs, resolvers });
   await server.start({
-    port: process.env.NODE_ENV
+    port: process.env.NODE_ENV_PORT
   });
   console.log("Server is running...");
 }
 
 startServer();
-

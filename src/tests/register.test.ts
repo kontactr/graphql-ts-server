@@ -16,6 +16,7 @@ test("User registered", async () => {
       register(email: "${email}" , password: "${password}") 
     }
   `;
+  console.log(process.env.PORT_ENV, 19);
   const response = await request(process.env.NODE_TESTING_URL || "", mutation);
   expect(response).toEqual({
     register: true
