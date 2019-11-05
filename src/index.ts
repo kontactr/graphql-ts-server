@@ -6,6 +6,8 @@ import * as path from "path";
 import resolvers from "./resolvers/resolvers";
 
 createConnection()
+
+  .then(async () => {
   .then(async () => {
     console.log("Inserting a new user into the database...");
 

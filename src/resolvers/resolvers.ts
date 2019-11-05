@@ -1,5 +1,6 @@
 import "../types/schema";
 import { ResolverMap } from "../types/graphqlTypesUtils";
+
 import * as bcrypt from "bcrypt";
 import { Users } from "../entity/Users";
 
@@ -8,6 +9,7 @@ const resolvers: ResolverMap = {
     hello: (_: any, { name }: GQL.IHelloOnQueryArguments) => `hello ${name}`
   },
   Mutation: {
+
     register: async (
       _: any,
       { email, password }: GQL.IRegisterOnMutationArguments
