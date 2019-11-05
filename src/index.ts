@@ -5,21 +5,23 @@ import { importSchema } from "graphql-import";
 import * as path from "path";
 import resolvers from "./resolvers/resolvers";
 
-createConnection()
 
-  .then(async () => {
-  .then(async () => {
-    console.log("Inserting a new user into the database...");
+const connectionObject =
+  process.env.NODE_ENV === "4000"
+    ? require("../ormconfig.json")
+    : require("../ormconfigtest.json");
 
-    console.log("Here you can setup and run express/koa/any other framework.");
+export async function startServer() {
+  await createConnection(connectionObject);
 
-    const typeDefs = importSchema(
-      path.join(__dirname, "schema/schema.graphql")
-    );
+  const typeDefs = importSchema(path.join(__dirname, "schema/schema.graphql"));
 
-    const server = new GraphQLServer({ typeDefs, resolvers });
-    server.start(() => {
-      console.log("Server is running...");
-    });
-  })
-  .catch(error => console.log(error));
+  const server = new GraphQLServer({ typeDefs, resolvers });
+  await server.start({
+    port: process.env.NODE_ENV
+  });
+  console.log("Server is running...");
+}
+
+startServer();
+

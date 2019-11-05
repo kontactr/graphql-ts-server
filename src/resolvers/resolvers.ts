@@ -14,14 +14,16 @@ const resolvers: ResolverMap = {
       _: any,
       { email, password }: GQL.IRegisterOnMutationArguments
     ) => {
-      console.log(process.env.PASSWORD_SALT, 15);
-      const hashedPassword = await bcrypt.hash(password, 
-        
-      );
+
+      const passwordSalt = parseInt(process.env.PASSWORD_SALT || "0", 10) || 2;
+
+      const hashedPassword = await bcrypt.hash(password, passwordSalt);
+
       const user = Users.create({
         email,
         password: hashedPassword
       });
+
       await user.save();
       return true;
     }
